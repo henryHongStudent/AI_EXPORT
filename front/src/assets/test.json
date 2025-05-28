@@ -1,0 +1,404 @@
+[
+  {
+    "bill_name": {
+      "value": "bill1"
+    },
+    "supplier_name": {
+      "value": "first",
+      "check": true,
+      "start_x": 50,
+      "start_y": 50,
+      "end_x": 150,
+      "end_y": 70
+    },
+    "reference_number": {
+      "value": "DIGGER#8",
+      "check": true,
+      "start_x": 50,
+      "start_y": 50,
+      "end_x": 150,
+      "end_y": 70
+    },
+    "supplier_phone": {
+      "value": "0800467009",
+      "check": true,
+      "start_x": 150,
+      "start_y": 50,
+      "end_x": 250,
+      "end_y": 70
+    },
+    "supplier_email": {
+      "value": "john.smith@example.com",
+      "check": true,
+      "start_x": 50,
+      "start_y": 70,
+      "end_x": 150,
+      "end_y": 90
+    },
+    "GST_number": {
+      "value": "123456789",
+      "check": true,
+      "start_x": 150,
+      "start_y": 90,
+      "end_x": 250,
+      "end_y": 110
+    },
+    "order_number": {
+      "value": "",
+      "check": true,
+      "start_x": 0,
+      "start_y": 0,
+      "end_x": 0,
+      "end_y": 0
+    },
+    "invoice_number": {
+      "value": "INV4159",
+      "check": true,
+      "start_x": 50,
+      "start_y": 110,
+      "end_x": 150,
+      "end_y": 130
+    },
+    "invoice_date": {
+      "value": "30-Nov-24",
+      "check": true,
+      "start_x": 150,
+      "start_y": 110,
+      "end_x": 250,
+      "end_y": 130
+    },
+    "due_date": {
+      "value": "20-Dec-24",
+      "check": true,
+      "start_x": 50,
+      "start_y": 150,
+      "end_x": 150,
+      "end_y": 170
+    },
+    "items": [
+      {
+        "item_name": {
+          "value": "Thwaites MACH2298 - Hire for 1 month",
+          "check": true,
+          "start_x": 50,
+          "start_y": 170,
+          "end_x": 250,
+          "end_y": 190
+        },
+        "quantity": {
+          "value": "1",
+          "check": true,
+          "start_x": 250,
+          "start_y": 170,
+          "end_x": 270,
+          "end_y": 190
+        },
+        "unit_price": {
+          "value": "3499.00",
+          "check": true,
+          "start_x": 270,
+          "start_y": 170,
+          "end_x": 350,
+          "end_y": 190
+        },
+        "subtotal": {
+          "value": "3499.00",
+          "check": true,
+          "start_x": 350,
+          "start_y": 170,
+          "end_x": 400,
+          "end_y": 190
+        }
+      },
+      {
+        "item_name": {
+          "value": "Thwaites MACH2298 - 33 excess hours",
+          "check": true,
+          "start_x": 50,
+          "start_y": 210,
+          "end_x": 250,
+          "end_y": 230
+        },
+        "quantity": {
+          "value": "33",
+          "check": true,
+          "start_x": 250,
+          "start_y": 210,
+          "end_x": 270,
+          "end_y": 230
+        },
+        "unit_price": {
+          "value": "29.00",
+          "check": true,
+          "start_x": 270,
+          "start_y": 210,
+          "end_x": 350,
+          "end_y": 230
+        },
+        "subtotal": {
+          "value": "957.00",
+          "check": true,
+          "start_x": 350,
+          "start_y": 210,
+          "end_x": 400,
+          "end_y": 230
+        }
+      }
+    ],
+    "subtotal": {
+      "value": "4456.00",
+      "check": true,
+      "start_x": 50,
+      "start_y": 250,
+      "end_x": 150,
+      "end_y": 270
+    },
+    "GST_amount": {
+      "value": "668.40",
+      "check": true,
+      "start_x": 150,
+      "start_y": 250,
+      "end_x": 250,
+      "end_y": 270
+    },
+    "total": {
+      "value": "5124.40",
+      "check": true,
+      "start_x": 250,
+      "start_y": 250,
+      "end_x": 350,
+      "end_y": 270
+    },
+    "bank_account_details": {
+      "bank_account_name": {
+        "value": "Equipt Ltd",
+        "check": true,
+        "start_x": 50,
+        "start_y": 310,
+        "end_x": 150,
+        "end_y": 330
+      },
+      "bank_name": {
+        "value": "ANZ Bank New Zealand",
+        "check": true,
+        "start_x": 150,
+        "start_y": 310,
+        "end_x": 250,
+        "end_y": 330
+      },
+      "account_number": {
+        "value": "38-9025-0388719-00",
+        "check": true,
+        "start_x": 250,
+        "start_y": 310,
+        "end_x": 350,
+        "end_y": 330
+      }
+    },
+    "difference": {
+      "value": 0.0,
+      "check": true
+    }
+  },
+  {
+    "bill_name": {
+      "value": "second"
+    },
+    "supplier_name": {
+      "value": "second",
+      "check": true,
+      "start_x": 50,
+      "start_y": 50,
+      "end_x": 150,
+      "end_y": 70
+    },
+    "reference_number": {
+      "value": "DIGGER#8",
+      "check": true,
+      "start_x": 50,
+      "start_y": 50,
+      "end_x": 150,
+      "end_y": 70
+    },
+    "supplier_phone": {
+      "value": "0800467009",
+      "check": true,
+      "start_x": 150,
+      "start_y": 50,
+      "end_x": 250,
+      "end_y": 70
+    },
+    "supplier_email": {
+      "value": "john.smith@example.com",
+      "check": true,
+      "start_x": 50,
+      "start_y": 70,
+      "end_x": 150,
+      "end_y": 90
+    },
+    "GST_number": {
+      "value": "123456789",
+      "check": true,
+      "start_x": 150,
+      "start_y": 90,
+      "end_x": 250,
+      "end_y": 110
+    },
+    "order_number": {
+      "value": "",
+      "check": true,
+      "start_x": 0,
+      "start_y": 0,
+      "end_x": 0,
+      "end_y": 0
+    },
+    "invoice_number": {
+      "value": "INV4159",
+      "check": true,
+      "start_x": 50,
+      "start_y": 110,
+      "end_x": 150,
+      "end_y": 130
+    },
+    "invoice_date": {
+      "value": "30-Nov-24",
+      "check": true,
+      "start_x": 150,
+      "start_y": 110,
+      "end_x": 250,
+      "end_y": 130
+    },
+    "due_date": {
+      "value": "20-Dec-24",
+      "check": true,
+      "start_x": 50,
+      "start_y": 150,
+      "end_x": 150,
+      "end_y": 170
+    },
+    "items": [
+      {
+        "item_name": {
+          "value": "Thwaites MACH2298 - Hire for 1 month",
+          "check": true,
+          "start_x": 50,
+          "start_y": 170,
+          "end_x": 250,
+          "end_y": 190
+        },
+        "quantity": {
+          "value": "1",
+          "check": true,
+          "start_x": 250,
+          "start_y": 170,
+          "end_x": 270,
+          "end_y": 190
+        },
+        "unit_price": {
+          "value": "3499.00",
+          "check": true,
+          "start_x": 270,
+          "start_y": 170,
+          "end_x": 350,
+          "end_y": 190
+        },
+        "subtotal": {
+          "value": "3499.00",
+          "check": true,
+          "start_x": 350,
+          "start_y": 170,
+          "end_x": 400,
+          "end_y": 190
+        }
+      },
+      {
+        "item_name": {
+          "value": "Thwaites MACH2298 - 33 excess hours",
+          "check": true,
+          "start_x": 50,
+          "start_y": 210,
+          "end_x": 250,
+          "end_y": 230
+        },
+        "quantity": {
+          "value": "33",
+          "check": true,
+          "start_x": 250,
+          "start_y": 210,
+          "end_x": 270,
+          "end_y": 230
+        },
+        "unit_price": {
+          "value": "29.00",
+          "check": true,
+          "start_x": 270,
+          "start_y": 210,
+          "end_x": 350,
+          "end_y": 230
+        },
+        "subtotal": {
+          "value": "957.00",
+          "check": true,
+          "start_x": 350,
+          "start_y": 210,
+          "end_x": 400,
+          "end_y": 230
+        }
+      }
+    ],
+    "subtotal": {
+      "value": "4456.00",
+      "check": true,
+      "start_x": 50,
+      "start_y": 250,
+      "end_x": 150,
+      "end_y": 270
+    },
+    "GST_amount": {
+      "value": "668.40",
+      "check": true,
+      "start_x": 150,
+      "start_y": 250,
+      "end_x": 250,
+      "end_y": 270
+    },
+    "total": {
+      "value": "5124.40",
+      "check": true,
+      "start_x": 250,
+      "start_y": 250,
+      "end_x": 350,
+      "end_y": 270
+    },
+    "bank_account_details": {
+      "bank_account_name": {
+        "value": "Equipt Ltd",
+        "check": true,
+        "start_x": 50,
+        "start_y": 310,
+        "end_x": 150,
+        "end_y": 330
+      },
+      "bank_name": {
+        "value": "ANZ Bank New Zealand",
+        "check": true,
+        "start_x": 150,
+        "start_y": 310,
+        "end_x": 250,
+        "end_y": 330
+      },
+      "account_number": {
+        "value": "38-9025-0388719-00",
+        "check": true,
+        "start_x": 250,
+        "start_y": 310,
+        "end_x": 350,
+        "end_y": 330
+      }
+    },
+    "difference": {
+      "value": 0.0,
+      "check": true
+    }
+  }
+]

@@ -1,0 +1,18 @@
+remote:
+remote:       ÔÇöÔÇö Amazon AWS Access Key ID ÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇö
+remote:        locations:
+remote:          - commit: 8c8970732cd6ee028926f98304383c1dcf6e9a64
+remote:            path: back/.env:3
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/henryHongStudent/AI_EXPORT/security/secret-scanning/unblock-secret/2xfj3t3hRGYYbR5KGeyYn4M561D
+remote:
+remote:
+remote:       ÔÇöÔÇö Amazon AWS Secret Access Key ÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇöÔÇö
+remote:        locations:
+remote:          - commit: 8c8970732cd6ee028926f98304383c1dcf6e9a64
+remote:            path: back/.env:4
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/henryHongStudent/AI_EXPORT/security/secret-scanning/unblock-secret/2xfj3rqetd3LX9Rd2mtaESZhp7Z
+remote:

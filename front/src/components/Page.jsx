@@ -1,5 +1,5 @@
 import React from "react";
-import InvoiceUploadForm from "./invoice-upload-form";
+import InvoiceUploadForm from "./Invoice-upload-form";
 
 const Page = () => {
   return (

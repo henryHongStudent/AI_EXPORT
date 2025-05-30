@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const useDocumentDetail = (userId, fileId) => {
   const [documentData, setDocumentData] = useState({
-    fileUrl: '',
+    fileUrl: "",
     extractedData: null,
-    metadata: null
+    metadata: null,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,43 +12,43 @@ export const useDocumentDetail = (userId, fileId) => {
   useEffect(() => {
     const fetchDocumentDetail = async () => {
       if (!userId || !fileId) {
-        setError('User ID and File ID are required');
+        setError("User ID and File ID are required");
         setLoading(false);
         return;
       }
 
       try {
         setLoading(true);
- 
-        
-    
-        const metadataResponse = await fetch(`http://localhost:3000/api/files/${userId}/${fileId}`);
+
+        const metadataResponse = await fetch(
+          `${import.meta.env.VITE_FILES}/${userId}/${fileId}`
+        );
         if (!metadataResponse.ok) {
           const errorData = await metadataResponse.json();
-          throw new Error(errorData.error || 'Failed to fetch file metadata');
+          throw new Error(errorData.error || "Failed to fetch file metadata");
         }
         const metadata = await metadataResponse.json();
-   ;
-
-   
-        const dataResponse = await fetch(`http://localhost:3000/api/files/${userId}/${fileId}/data`);
+        const dataResponse = await fetch(
+          `${import.meta.env.VITE_FILES}/${userId}/${fileId}/data`
+        );
         if (!dataResponse.ok) {
           const errorData = await dataResponse.json();
-          throw new Error(errorData.error || 'Failed to fetch extracted data');
+          throw new Error(errorData.error || "Failed to fetch extracted data");
         }
         const extractedData = await dataResponse.json();
-  
 
-        const fileUrl = `http://localhost:3000/api/files/${userId}/${fileId}/download`;
+        const fileUrl = `${
+          import.meta.env.VITE_FILES
+        }/${userId}/${fileId}/download`;
 
         setDocumentData({
           fileUrl,
           extractedData,
-          metadata
+          metadata,
         });
         setError(null);
       } catch (err) {
-        console.error('Error fetching document detail:', err);
+        console.error("Error fetching document detail:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -59,4 +59,4 @@ export const useDocumentDetail = (userId, fileId) => {
   }, [userId, fileId]);
 
   return { documentData, loading, error };
-}; 
+};

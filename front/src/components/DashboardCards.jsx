@@ -1,17 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  FileText, 
-  BarChart3, 
-  Check, 
-  AlertTriangle, 
-  Clock, 
-  ArrowUpRight, 
-  ArrowDownRight 
+import {
+  FileText,
+  BarChart3,
+  Check,
+  AlertTriangle,
+  Clock,
+  ArrowUpRight,
+  ArrowDownRight,
 } from "lucide-react";
 import { useDashboardData } from "../hooks/useDashboardData";
 
-const DashboardCard = ({ title, value, icon, footer, footerColor, footerIcon }) => {
+const DashboardCard = ({
+  title,
+  value,
+  icon,
+  footer,
+  footerColor,
+  footerIcon,
+}) => {
   return (
     <div className="bg-card rounded-xl shadow-sm border p-6 h-full">
       <div className="flex justify-between items-start">
@@ -70,41 +77,80 @@ const DashboardCards = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {/* Total processed files */}
-        <DashboardCard 
+        <DashboardCard
           title="Total Files Processed"
           value={dashboardData.totalFiles.count}
           icon={<FileText size={20} />}
-          footer={`${dashboardData.totalFiles.change}% ${dashboardData.totalFiles.increasedSinceLastWeek ? 'increase' : 'decrease'} from last week`}
-          footerColor={dashboardData.totalFiles.increasedSinceLastWeek ? "text-green-600" : "text-red-600"}
-          footerIcon={dashboardData.totalFiles.increasedSinceLastWeek ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
+          footer={`${dashboardData.totalFiles.change}% ${
+            dashboardData.totalFiles.increasedSinceLastWeek
+              ? "increase"
+              : "decrease"
+          } from last week`}
+          footerColor={
+            dashboardData.totalFiles.increasedSinceLastWeek
+              ? "text-green-600"
+              : "text-red-600"
+          }
+          footerIcon={
+            dashboardData.totalFiles.increasedSinceLastWeek ? (
+              <ArrowUpRight size={16} />
+            ) : (
+              <ArrowDownRight size={16} />
+            )
+          }
         />
 
         {/* Files processed today */}
-        <DashboardCard 
+        <DashboardCard
           title="Processed Today"
           value={dashboardData.processedToday.count}
           icon={<Check size={20} />}
           footer={`${dashboardData.processedToday.change} more than yesterday`}
-          footerColor={dashboardData.processedToday.increasedSinceLastWeek ? "text-green-600" : "text-red-600"}
-          footerIcon={dashboardData.processedToday.increasedSinceLastWeek ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
+          footerColor={
+            dashboardData.processedToday.increasedSinceLastWeek
+              ? "text-green-600"
+              : "text-red-600"
+          }
+          footerIcon={
+            dashboardData.processedToday.increasedSinceLastWeek ? (
+              <ArrowUpRight size={16} />
+            ) : (
+              <ArrowDownRight size={16} />
+            )
+          }
         />
 
         {/* Average accuracy */}
-        <DashboardCard 
+        <DashboardCard
           title="Average OCR Accuracy"
           value={`${dashboardData.averageAccuracy.percentage}%`}
           icon={<BarChart3 size={20} />}
-          footer={`${dashboardData.averageAccuracy.change}% ${dashboardData.averageAccuracy.increasedSinceLastWeek ? 'higher' : 'lower'} than last week`}
-          footerColor={dashboardData.averageAccuracy.increasedSinceLastWeek ? "text-green-600" : "text-red-600"}
-          footerIcon={dashboardData.averageAccuracy.increasedSinceLastWeek ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
+          footer={`${dashboardData.averageAccuracy.change}% ${
+            dashboardData.averageAccuracy.increasedSinceLastWeek
+              ? "higher"
+              : "lower"
+          } than last week`}
+          footerColor={
+            dashboardData.averageAccuracy.increasedSinceLastWeek
+              ? "text-green-600"
+              : "text-red-600"
+          }
+          footerIcon={
+            dashboardData.averageAccuracy.increasedSinceLastWeek ? (
+              <ArrowUpRight size={16} />
+            ) : (
+              <ArrowDownRight size={16} />
+            )
+          }
         />
       </div>
 
       {/* Recently processed documents table */}
       <div className="bg-card rounded-xl shadow-sm border p-6 mt-6">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Recently Processed Documents</h3>
- 
+          <h3 className="text-lg font-semibold">
+            Recently Processed Documents
+          </h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -118,22 +164,26 @@ const DashboardCards = () => {
             </thead>
             <tbody>
               {dashboardData.recentDocuments.map((doc, index) => (
-                <tr 
-                  key={index} 
+                <tr
+                  key={index}
                   className="border-b  cursor-pointer transition-colors"
                   onClick={() => handleRowClick(doc.fileId)}
                 >
                   <td className="py-3">{doc.fileName}</td>
-                  <td className="py-3">{new Date(doc.createdAt).toLocaleString()}</td>
+                  <td className="py-3">
+                    {new Date(doc.createdAt).toLocaleString()}
+                  </td>
                   <td className="py-3">{doc.accuracy}%</td>
                   <td className="py-3">
-                    <span className={`px-2 py-1 rounded-full text-xs ${
-                      doc.status === 'completed' 
-                        ? 'bg-green-100 text-green-800'
-                        : doc.status === 'review'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        doc.status === "completed"
+                          ? "bg-green-100 text-green-800"
+                          : doc.status === "review"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
                       {doc.status.charAt(0).toUpperCase() + doc.status.slice(1)}
                     </span>
                   </td>
@@ -147,4 +197,4 @@ const DashboardCards = () => {
   );
 };
 
-export default DashboardCards; 
+export default DashboardCards;

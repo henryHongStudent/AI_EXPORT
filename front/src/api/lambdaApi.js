@@ -1,12 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-
-
 export function useLogin() {
-
   return useMutation({
     mutationFn: async ({ email, password }) => {
+      console.log(import.meta.env.VITE_LOGIN);
       const res = await fetch(import.meta.env.VITE_LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,7 +54,6 @@ export function useLogout() {
   return useMutation({
     mutationFn: async ({ userID }) => {
       const token = localStorage.getItem("token");
-   
 
       if (!token) {
         throw new Error("No authentication token found");
@@ -81,7 +78,6 @@ export function useLogout() {
         throw new Error(errorData.message || "Failed to log out");
       }
 
-    
       localStorage.removeItem("token");
       localStorage.removeItem("userID");
       localStorage.removeItem("username");
@@ -91,7 +87,6 @@ export function useLogout() {
   });
 }
 
-
 export function useGetUser(token) {
   const userID = localStorage.getItem("userID");
 
@@ -99,7 +94,7 @@ export function useGetUser(token) {
     queryKey: ["getUser", userID],
     queryFn: async () => {
       let url = import.meta.env.VITE_GET_USER;
-   
+
       if (userID) {
         url += `?userID=${userID}`;
       }
@@ -140,7 +135,7 @@ export function useGetUser(token) {
 export function useUpdateUser(token) {
   return useMutation({
     mutationFn: async (updateData) => {
-      const response = await axios.put(
+      const response = await axios.patch(
         import.meta.env.VITE_UPDATE_USER,
         updateData,
         {
@@ -150,6 +145,7 @@ export function useUpdateUser(token) {
           },
         }
       );
+      console.log("response from update user", response);
       return response.data;
     },
   });
@@ -161,19 +157,16 @@ export const useGetAllUsers = (token) => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_VITE_GET_ALL_USERS,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(import.meta.env.VITE_GET_ALL_USERS, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         return response.data;
       } catch (error) {
         console.error("Error fetching users:", error);
-       
+
         return { users: [] };
       }
     },
@@ -182,7 +175,6 @@ export const useGetAllUsers = (token) => {
 };
 
 export const useChangePassword = (token) => {
-
   return useMutation({
     mutationFn: async ({ userID, newPassword, isAdmin, targetUserID }) => {
       const response = await axios.put(
@@ -211,7 +203,7 @@ export function useToggleUserStatus() {
   return useMutation({
     mutationFn: async ({ userID }) => {
       const response = await axios.patch(
-      import.meta.env.TOGGLE_USER_STATUS,
+        import.meta.env.VITE_TOGGLE_STATUS,
         { userID },
         {
           headers: {

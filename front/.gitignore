@@ -16,3 +16,4 @@ remote:
 remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
 remote:        https://github.com/henryHongStudent/AI_EXPORT/security/secret-scanning/unblock-secret/2xfj3rqetd3LX9Rd2mtaESZhp7Z
 remote:
+.vercel

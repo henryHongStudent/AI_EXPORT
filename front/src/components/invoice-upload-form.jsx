@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import FileUpload from "./FileUpload";
-import InvoiceDetail from "./invoiceDetail";
+import InvoiceDetail from "./InvoiceDetail";
 import ProgressBar from "./ProgressBar";
 import Confetti from "react-confetti";
 import { FileText } from "lucide-react";

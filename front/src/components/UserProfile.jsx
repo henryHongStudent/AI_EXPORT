@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Building, 
-  Calendar, 
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Building,
+  Calendar,
   Lock,
-  Key
+  Key,
 } from "lucide-react";
 import { useUpdateUser, useChangePassword } from "../api/lambdaApi";
 import { Input } from "./ui/input";
@@ -21,7 +21,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordData, setPasswordData] = useState({
     newPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [passwordError, setPasswordError] = useState("");
   const [profile, setProfile] = useState({
@@ -31,7 +31,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
     phone: "",
     address: "",
     company: "",
-    joinDate: ""
+    joinDate: "",
   });
   const [formData, setFormData] = useState({ ...profile });
   const queryClient = useQueryClient();
@@ -45,17 +45,16 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
         phone: userData.phoneNumber || "",
         address: userData.address || "",
         company: userData.companyName || "",
-        joinDate: userData.joinDate || ""
+        joinDate: userData.joinDate || "",
       };
       setProfile(updatedProfile);
       setFormData(updatedProfile);
     } else if (userID) {
-      setProfile(prev => ({ ...prev, userID }));
-      setFormData(prev => ({ ...prev, userID }));
+      setProfile((prev) => ({ ...prev, userID }));
+      setFormData((prev) => ({ ...prev, userID }));
     }
   }, [userData, userID]);
 
-  const updateUserMutation = useUpdateUser(token);
   const changePasswordMutation = useChangePassword(token);
 
   const handleEditToggle = () => {
@@ -64,7 +63,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
     }
     setIsEditing(!isEditing);
   };
-  
+
   const handleSaveChanges = async () => {
     setIsLoading(true);
     try {
@@ -73,21 +72,20 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
         name: formData.name || "",
         phoneNumber: formData.phone || "",
         address: formData.address || "",
-        companyName: formData.company || ""
+        companyName: formData.company || "",
       };
-      
 
       const response = await axios.patch(
-        'http://localhost:3000/api/user/update',
+        import.meta.env.VITE_UPDATE_USER,
         updateData,
         {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
-
+      console
 
       if (response.data.success) {
         const updatedProfile = {
@@ -97,18 +95,17 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
           phone: response.data.user.phoneNumber,
           address: response.data.user.address,
           company: response.data.user.companyName,
-          joinDate: response.data.user.joinDate
+          joinDate: response.data.user.joinDate,
         };
 
         setProfile(updatedProfile);
         setFormData(updatedProfile);
 
-        await queryClient.invalidateQueries(['user', userID]);
-        
+        await queryClient.invalidateQueries(["user", userID]);
+
         toast.success("Profile updated successfully");
         setIsEditing(false);
         localStorage.setItem("username", updatedProfile.name);
-    
       }
     } catch (error) {
       console.error("Error updating user information:", error);
@@ -118,12 +115,12 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
       setIsLoading(false);
     }
   };
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({...prev, [name]: value}));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handlePasswordChange = async () => {
     setPasswordError("");
     if (passwordData.newPassword !== passwordData.confirmPassword) {
@@ -137,21 +134,23 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
       setIsLoading(true);
       const response = await changePasswordMutation.mutateAsync({
         userID: profile.userID || userID,
+
         newPassword: passwordData.newPassword,
-        isAdmin: false
+        isAdmin: false,
       });
-      
+
       if (response.success) {
         toast.success(response.message || "Password successfully changed");
         setShowPasswordModal(false);
         setPasswordData({
           newPassword: "",
-          confirmPassword: ""
+          confirmPassword: "",
         });
       }
     } catch (error) {
       console.error("Error changing password:", error);
-      const errorMessage = error.response?.data?.message || "Failed to change password";
+      const errorMessage =
+        error.response?.data?.message || "Failed to change password";
       setPasswordError(errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -172,7 +171,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
               &times;
             </button>
           </div>
-          
+
           <div className="space-y-4">
             {/* Name */}
             <div>
@@ -180,12 +179,12 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <User size={16} className="text-primary" /> Name
               </label>
               {isEditing ? (
-                <Input 
+                <Input
                   type="text"
-                  id="name" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleChange} 
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="mt-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
                   disabled={isLoading}
                   placeholder="Enter your name"
@@ -194,7 +193,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <p className="text-foreground mt-1 pl-6">{profile.name}</p>
               )}
             </div>
-            
+
             {/* Email (non-editable) */}
             <div>
               <label htmlFor="email" className="flex items-center gap-2">
@@ -204,21 +203,23 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <p className="text-foreground">{profile.email}</p>
                 <Lock size={14} className="ml-2 text-muted-foreground" />
               </div>
-              <p className="text-xs text-muted-foreground pl-6">Email cannot be changed</p>
+              <p className="text-xs text-muted-foreground pl-6">
+                Email cannot be changed
+              </p>
             </div>
-            
+
             {/* Phone */}
             <div>
               <label htmlFor="phone" className="flex items-center gap-2">
                 <Phone size={16} className="text-primary" /> Phone
               </label>
               {isEditing ? (
-                <Input 
+                <Input
                   type="tel"
-                  id="phone" 
-                  name="phone" 
-                  value={formData.phone} 
-                  onChange={handleChange} 
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="mt-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
                   disabled={isLoading}
                   placeholder="Enter your phone number"
@@ -227,19 +228,19 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <p className="text-foreground mt-1 pl-6">{profile.phone}</p>
               )}
             </div>
-            
+
             {/* Address */}
             <div>
               <label htmlFor="address" className="flex items-center gap-2">
                 <MapPin size={16} className="text-primary" /> Address
               </label>
               {isEditing ? (
-                <Input 
+                <Input
                   type="text"
-                  id="address" 
-                  name="address" 
-                  value={formData.address} 
-                  onChange={handleChange} 
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
                   className="mt-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
                   disabled={isLoading}
                   placeholder="Enter your address"
@@ -248,19 +249,19 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <p className="text-foreground mt-1 pl-6">{profile.address}</p>
               )}
             </div>
-            
+
             {/* Company */}
             <div>
               <label htmlFor="company" className="flex items-center gap-2">
                 <Building size={16} className="text-primary" /> Company
               </label>
               {isEditing ? (
-                <Input 
+                <Input
                   type="text"
-                  id="company" 
-                  name="company" 
-                  value={formData.company} 
-                  onChange={handleChange} 
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   className="mt-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary"
                   disabled={isLoading}
                   placeholder="Enter your company name"
@@ -269,7 +270,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 <p className="text-foreground mt-1 pl-6">{profile.company}</p>
               )}
             </div>
-            
+
             {/* Join Date (read-only) */}
             <div>
               <label className="flex items-center gap-2">
@@ -278,16 +279,16 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
               <p className="text-foreground mt-1 pl-6">{profile.joinDate}</p>
             </div>
           </div>
-          
+
           <div className="mt-6 flex gap-3 justify-end">
-            <button 
+            <button
               className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
               onClick={onClose}
               disabled={isLoading}
             >
               {isEditing ? "Cancel" : "Close"}
             </button>
-            <button 
+            <button
               className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
               onClick={() => setShowPasswordModal(true)}
               disabled={isLoading}
@@ -297,16 +298,20 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                 Change Password
               </div>
             </button>
-            <button 
+            <button
               className={`px-4 py-2 rounded-md text-sm font-medium ${
-                isEditing 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                isEditing
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
                   : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
               }`}
               onClick={handleEditToggle}
               disabled={isLoading}
             >
-              {isLoading ? "Saving..." : isEditing ? "Save Changes" : "Edit Profile"}
+              {isLoading
+                ? "Saving..."
+                : isEditing
+                ? "Save Changes"
+                : "Edit Profile"}
             </button>
           </div>
         </div>
@@ -319,29 +324,41 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
             <h2 className="text-xl font-bold mb-4">Change Password</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">New Password</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  New Password
+                </label>
                 <Input
                   type="password"
                   value={passwordData.newPassword}
-                  onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
+                  onChange={(e) =>
+                    setPasswordData((prev) => ({
+                      ...prev,
+                      newPassword: e.target.value,
+                    }))
+                  }
                   className="mt-1"
                   disabled={isLoading}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Confirm New Password
+                </label>
                 <Input
                   type="password"
                   value={passwordData.confirmPassword}
-                  onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                  onChange={(e) =>
+                    setPasswordData((prev) => ({
+                      ...prev,
+                      confirmPassword: e.target.value,
+                    }))
+                  }
                   className="mt-1"
                   disabled={isLoading}
                 />
               </div>
               {passwordError && (
-                <div className="text-red-500 text-sm">
-                  {passwordError}
-                </div>
+                <div className="text-red-500 text-sm">{passwordError}</div>
               )}
             </div>
             <div className="mt-6 flex justify-end gap-2">
@@ -351,7 +368,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
                   setShowPasswordModal(false);
                   setPasswordData({
                     newPassword: "",
-                    confirmPassword: ""
+                    confirmPassword: "",
                   });
                   setPasswordError("");
                 }}
@@ -362,7 +379,11 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
               <button
                 className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700"
                 onClick={handlePasswordChange}
-                disabled={isLoading || !passwordData.newPassword || !passwordData.confirmPassword}
+                disabled={
+                  isLoading ||
+                  !passwordData.newPassword ||
+                  !passwordData.confirmPassword
+                }
               >
                 {isLoading ? "Changing..." : "Change Password"}
               </button>
@@ -374,4 +395,4 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

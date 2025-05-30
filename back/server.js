@@ -138,7 +138,7 @@ const storeFileContent = async (
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:"*",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
     credentials: true,
@@ -293,6 +293,7 @@ const s3Client = new S3Client({
 
 // Health check endpoint
 app.get("/", (req, res) => {
+  res.send("Server is running!");
   return res.json({ message: "Server is running on port 3000" });
 });
 

@@ -69,7 +69,7 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
     try {
       const updateData = {
         userID: profile.userID || userID,
-        name: formData.name || "",
+        name: formData.name,
         phoneNumber: formData.phone || "",
         address: formData.address || "",
         companyName: formData.company || "",
@@ -84,8 +84,6 @@ const UserProfile = ({ onClose, userData, userID, token }) => {
           },
         }
       );
-
-      console
 
       if (response.data.success) {
         const updatedProfile = {
